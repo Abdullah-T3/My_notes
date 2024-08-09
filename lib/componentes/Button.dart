@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustButton extends StatelessWidget {
-
   final String text;
   final String? logo;
   final Function()? onPressed;
@@ -13,26 +12,25 @@ class CustButton extends StatelessWidget {
       onPressed: onPressed,
       child: logo != null
           ? Container(
-        child: Row(
-          children: [
-            Container(
-              height: 20,
-              width: 20,
-              child: Image.asset(logo!),
-            ),
-            SizedBox(width: 10),
-            Text(
-              text,
-            ),
-          ],
-        ),
-      )
+              child: Row(
+                children: [
+                  Container(
+                    height: 20,
+                    width: 20,
+                    child: Image.asset(logo!),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    text,
+                  ),
+                ],
+              ),
+            )
           : Text(
-        text,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-      ),
+              text,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
   }
-
 }
