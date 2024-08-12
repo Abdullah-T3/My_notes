@@ -45,11 +45,10 @@ class _LoginPageState extends State<LoginPage> {
                       left: deviceInfo.screenWidth * 0.06),
                   child: Cust_Textfield(
                     Mycontroller: Passwordcontroller,
-                    labelText: "Password",
                     inputDecoration:inputdecoration(() {
                       ispressd = !ispressd;
                       setState(() {});
-                    }, ispressd),
+                    }, ispressd,"Password"),
                     MyobscureText: ispressd,
                   )),
               Padding(

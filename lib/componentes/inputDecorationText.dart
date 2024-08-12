@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-InputDecoration inputdecoration (VoidCallback? onpressed,bool ispressd) {
+InputDecoration inputdecoration (VoidCallback? onpressed,bool ispressd,String text) {
   return InputDecoration(
     suffixIcon: IconButton(
         onPressed:onpressed,
@@ -21,13 +21,13 @@ InputDecoration inputdecoration (VoidCallback? onpressed,bool ispressd) {
     labelStyle: TextStyle(
       color: Colors.grey,
     ),
-    labelText: "Password",
+    labelText: text,
     alignLabelWithHint: true,
     hintStyle: TextStyle(
         color: Colors.grey,
         fontSize: 10,
         fontWeight: FontWeight.bold,
-        fontFamily: 'Poppins'),
+        ),
   );
 }
 

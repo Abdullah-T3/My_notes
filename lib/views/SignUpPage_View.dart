@@ -64,11 +64,10 @@ class _SignupPage extends State<SignupPage> {
                       left: deviceInfo.screenWidth * 0.06),
                   child: Cust_Textfield(
                     Mycontroller: Passwordcontroller,
-                    labelText: "Password",
                     inputDecoration: inputdecoration(() {
                       ispressd2 = !ispressd2;
                       setState(() {});
-                    }, ispressd2),
+                    }, ispressd2,"Password"),
                     MyobscureText: ispressd,
                   )),
               Padding(
@@ -81,7 +80,7 @@ class _SignupPage extends State<SignupPage> {
                     inputDecoration: inputdecoration(() {
                       ispressd2 = !ispressd2;
                       setState(() {});
-                    }, ispressd2),
+                    }, ispressd2,"Confirm Password"),
                     MyobscureText: ispressd,
                   )),
               SizedBox(
