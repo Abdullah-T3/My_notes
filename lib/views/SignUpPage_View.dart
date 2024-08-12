@@ -38,7 +38,12 @@ class _SignupPage extends State<SignupPage> {
                       right: deviceInfo.screenWidth * 0.06,
                       left: deviceInfo.screenWidth * 0.06),
                   child: Cust_Textfield(
-                    hintText: "Full Name",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+
+                      }
+                      return null;
+                    },
                     Mycontroller: Namecontroller,
                     labelText: "Full Name",
                   )),

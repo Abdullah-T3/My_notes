@@ -12,11 +12,11 @@ class Cust_Textfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  TextFormField(
+      validator:  validator,
         cursorColor: Color(0xff000000),
         obscureText:MyobscureText==null ? false: MyobscureText!,
         controller: Mycontroller,
         decoration: inputDecoration ==null ?  InputDecoration(
-
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
