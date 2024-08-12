@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class Homepage extends StatelessWidget {
   @override
@@ -5,15 +6,17 @@ class Homepage extends StatelessWidget {
     return
       Scaffold(
         appBar: AppBar(
-          title: Text("HomePage"),
+          title: Text("My Notes",style: TextStyle(color: Colors.white),),
+         backgroundColor: Color(0xff201E43),
           actions: [
             IconButton(
-              onPressed: () {
+              onPressed: ()async {
+                await FirebaseAuth.instance.signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                    context, "/login", (route) => false
+                    context, "Login In", (route) => false
                 );
               },
-              icon: Icon(Icons.logout),
+              icon: Icon(Icons.logout,color: Colors.white,),
             ),
           ],
         ),

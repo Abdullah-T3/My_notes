@@ -1,13 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 
+import '../Responsive/UiComponanets/InfoWidget.dart';
 import '../componentes/Button.dart';
+import '../componentes/Custom_TextButton.dart';
 import '../componentes/TextField.dart';
 import '../componentes/TopPage.dart';
-
-
+import '../componentes/inputDecorationText.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -20,145 +19,127 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController Passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: Column(
-          children: [
-            Toppage(),
-            Padding(
-                padding: EdgeInsets.only(top: 40, right: 25, left: 25),
-                child: Cust_Textfield(
-                  hintText: "Email",
-                  Mycontroller: Emailcontroller,
-                  labelText: "Email",
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20, right: 25, left: 25),
-                child: Cust_Textfield(
-                  hintText: "Password",
-                  Mycontroller: Passwordcontroller,
-                  labelText: "Password",
-                  inputDecoration: InputDecoration(
-                    suffixIcon: IconButton(
-                        onPressed: () {
-                          ispressd = !ispressd;
-                          setState(() {});
-                        },
-                        icon: Icon(ispressd
-                            ? Icons.visibility
-                            : Icons.visibility_off)),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey, width: 1),
-                    ),
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                    ),
-                    labelText: "Password",
-                    alignLabelWithHint: true,
-                    hintStyle: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Poppins'),
-                  ),
-                  MyobscureText: ispressd,
-                )),
-            Padding(
-              padding: const EdgeInsets.only(right: 25, top: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Forget Password?",
-                        style: TextStyle(
-                            color: Color(0xffa5c85a),
-                            fontWeight: FontWeight.bold),
-                      ))
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Color(0xffbee562),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              height: MediaQuery.of(context).size.height * 0.09,
-              width: MediaQuery.of(context).size.width * 0.90,
-              child: Expanded(
-                  child: CustButton(
-                    text: "Login", onPressed: () {
-                    Navigator.of(context).pushReplacementNamed("/home");
-                  },
+    return Infowidget(builder: (context, deviceInfo) {
+      return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Column(
+            children: [
+              TopPage(  ispressed: false,),
+              Padding(
+                  padding: EdgeInsets.only(
+                      top: deviceInfo.screenHeight * 0.05,
+                      right: deviceInfo.screenWidth * 0.06,
+                      left: deviceInfo.screenWidth * 0.06),
+                  child: Cust_Textfield(
+                    Mycontroller: Emailcontroller,
+                    labelText: "Email",
                   )),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Or login with",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+              Padding(
+                  padding: EdgeInsets.only(
+                      top: deviceInfo.screenHeight * 0.025,
+                      right: deviceInfo.screenWidth * 0.06,
+                      left: deviceInfo.screenWidth * 0.06),
+                  child: Cust_Textfield(
+                    Mycontroller: Passwordcontroller,
+                    labelText: "Password",
+                    inputDecoration:inputdecoration(() {
+                      ispressd = !ispressd;
+                      setState(() {});
+                    }, ispressd),
+                    MyobscureText: ispressd,
+                  )),
+              Padding(
+                padding:  EdgeInsets.only(right:deviceInfo.screenWidth * 0.05, top: deviceInfo.screenHeight * 0.03),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomTextbutton(text: "Forget Password?")
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 25, left: 25),
-              child: Row(
-                children: [
-                  Expanded(
-                      child: CustButton(
-                        logo: "images/facebook.png",
-                        text: "Facebook",
-                        onPressed: () {},
-                      )),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.10,
-                  ),
-                  Expanded(
-                      child: CustButton(
-                        logo: "images/google.png",
-                        text: "Google",
-                        onPressed: () {},
-                      )),
-                ],
+              SizedBox(
+                height: deviceInfo.screenHeight * 0.025,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Dont have an account?",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed("/signup");
-                      },
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(
-                            color: Color(0xffa5c85a),
-                            fontWeight: FontWeight.bold),
-                      ))
-                ],
+              Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffbee562),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                height: deviceInfo.screenHeight * 0.09,
+                width: deviceInfo.screenWidth * 0.90,
+                child: Expanded(
+                    child: CustButton(
+                  text: "Login",
+                  onPressed: () async {
+                    try {
+                      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: Emailcontroller.text,
+                          password: Passwordcontroller.text
+                      );
+                      Navigator.of(context).pushReplacementNamed("home");
+                    } on FirebaseAuthException catch (e) {
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        print('Wrong password provided for that user.');
+                      }
+                    }
+                    Navigator.of(context).pushReplacementNamed("home");
+                  },
+                )),
               ),
-            )
-          ],
+              Padding(
+                padding:const EdgeInsets.all(20.0),
+                child: Text(
+                  "Or login with",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only( left: deviceInfo.screenWidth * 0.1,right: deviceInfo.screenWidth * 0.1),
+                child: Row(
+                  children: [
+
+                       CustButton(
+                      logo: "assets/images/facebook.png",
+                      text: "Facebook",
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      width: deviceInfo.screenWidth * 0.14,
+                    ),
+
+                       CustButton(
+                      logo: "assets/images/google.png",
+                      text: "Google",
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:  EdgeInsets.only(top: deviceInfo.screenHeight * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Dont have an account?",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    CustomTextbutton(text: "Sign Up")
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
