@@ -28,7 +28,9 @@ class _LoginPageState extends State<LoginPage> {
           },
           child: Column(
             children: [
-              TopPage(  ispressed: false,),
+              TopPage(
+                ispressed: false,
+              ),
               Padding(
                   padding: EdgeInsets.only(
                       top: deviceInfo.screenHeight * 0.05,
@@ -45,19 +47,19 @@ class _LoginPageState extends State<LoginPage> {
                       left: deviceInfo.screenWidth * 0.06),
                   child: Cust_Textfield(
                     Mycontroller: Passwordcontroller,
-                    inputDecoration:inputdecoration(() {
+                    inputDecoration: inputdecoration(() {
                       ispressd = !ispressd;
                       setState(() {});
-                    }, ispressd,"Password"),
+                    }, ispressd, "Password"),
                     MyobscureText: ispressd,
                   )),
               Padding(
-                padding:  EdgeInsets.only(right:deviceInfo.screenWidth * 0.05, top: deviceInfo.screenHeight * 0.03),
+                padding: EdgeInsets.only(
+                    right: deviceInfo.screenWidth * 0.05,
+                    top: deviceInfo.screenHeight * 0.03),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomTextbutton(text: "Forget Password?")
-                  ],
+                  children: [CustomTextbutton(text: "Forget Password?")],
                 ),
               ),
               SizedBox(
@@ -75,10 +77,10 @@ class _LoginPageState extends State<LoginPage> {
                   text: "Login",
                   onPressed: () async {
                     try {
-                      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: Emailcontroller.text,
-                          password: Passwordcontroller.text
-                      );
+                      final credential = await FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: Emailcontroller.text,
+                              password: Passwordcontroller.text);
                       Navigator.of(context).pushReplacementNamed("home");
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'user-not-found') {
@@ -92,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                 )),
               ),
               Padding(
-                padding:const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Text(
                   "Or login with",
                   style: TextStyle(
@@ -101,11 +103,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only( left: deviceInfo.screenWidth * 0.1,right: deviceInfo.screenWidth * 0.1),
+                padding: EdgeInsets.only(
+                    left: deviceInfo.screenWidth * 0.1,
+                    right: deviceInfo.screenWidth * 0.1),
                 child: Row(
                   children: [
-
-                       CustButton(
+                    CustButton(
                       logo: "assets/images/facebook.png",
                       text: "Facebook",
                       onPressed: () {},
@@ -113,8 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: deviceInfo.screenWidth * 0.14,
                     ),
-
-                       CustButton(
+                    CustButton(
                       logo: "assets/images/google.png",
                       text: "Google",
                       onPressed: () {},
@@ -123,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(top: deviceInfo.screenHeight * 0.02),
+                padding: EdgeInsets.only(top: deviceInfo.screenHeight * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
